@@ -8,6 +8,7 @@ public class BootStoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BootStoreApplication.class, args);
+		System.out.println("Server listening on: http://localhost:8080/boots");
 	}
 
 }

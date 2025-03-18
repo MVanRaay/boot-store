@@ -25,7 +25,8 @@ public class BootController {
     }
 
     @GetMapping(path = "/add")
-    String addBoot(final Boot boot) {
+    String addBoot(Model model) {
+        model.addAttribute("boot", new Boot());
         return "addBoot";
     }
 

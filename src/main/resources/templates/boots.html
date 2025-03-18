@@ -30,13 +30,13 @@
             <a class="nav-link" th:href="@{/boots/add}">Add a new Boot</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/boots/${id}}">Details</a>
+            <a class="nav-link disabled" th:href="@{/boots/${id}}">Details</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/boots/${id}/edit}">Edit</a>
+            <a class="nav-link disabled" th:href="@{/boots/${id}/edit}">Edit</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/boots/${id}/delete}">Delete</a>
+            <a class="nav-link disabled" th:href="@{/boots/${id}/delete}">Delete</a>
         </li>
     </ul>
 </div>
@@ -49,6 +49,7 @@
         <th scope="col">Description</th>
         <th scope="col">Size</th>
         <th scope="col">Price</th>
+        <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -58,6 +59,11 @@
         <td th:text="${boot.description}"/>
         <td th:text="${boot.size}"/>
         <td>$ <span th:text="${#numbers.formatDecimal(boot.price, 0, 'COMMA', 2, 'POINT')}"></span></td>
+        <td>
+            <a th:href="@{/boots/{id}/edit}" class="btn btn-outline-info">Edit</a>
+            &nbsp;&nbsp;
+            <a th:href="@{/boots/{id}/delete}" class="btn btn-outline-danger">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>

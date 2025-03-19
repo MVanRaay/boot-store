@@ -32,18 +32,18 @@
             <a class="nav-link" th:href="@{/boots/add}">Add a new Boot</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" th:href="@{'/boots/' + ${boot.id}}">Details</a>
+            <a class="nav-link" th:href="@{'/boots/' + ${boot.id}}">Details</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" th:href="@{'/boots/' + ${boot.id} + '/edit'}">Edit</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{'/boots/' + ${boot.id} + '/delete'}">Delete</a>
+            <a class="nav-link active" aria-current="page" th:href="@{'/boots/' + ${boot.id} + '/delete'}">Delete</a>
         </li>
     </ul>
 </div>
 <div class="buffer"></div>
-<h1>Boot Details</h1>
+<h1>Delete Boot</h1>
 <div class="buffer"></div>
 <h4>Brand</h4>
 <p th:text="${boot.brandName}"></p>
@@ -55,5 +55,9 @@
 <p th:text="${boot.size}"></p>
 <h4>Price</h4>
 <p th:text="${boot.price}"></p>
+<form method="post" th:action="@{'/boots/' + boot.id + '/delete'}" th:object="${boot}">
+    <input type="submit" class="btn btn-danger" value="Delete"/>
+    <a class="btn btn-outline-primary" th:href="@{/boots}">Cancel</a>
+</form>
 </body>
 </html>

@@ -55,4 +55,17 @@ public class BootController {
         bootService.updateBoot(boot);
         return "redirect:/boots/" + id;
     }
+
+    @GetMapping(path = "/{id}/delete")
+    String deleteBoot(@PathVariable String id, Model model) {
+        Boot boot = bootService.getBootById(Long.parseLong(id));
+        model.addAttribute("boot", boot);
+        return "deleteBoot";
+    }
+
+    @PostMapping(path = "/{id}/delete")
+    String deleteBoot(@PathVariable String id, Boot boot) {
+        bootService.deleteBoot(boot);
+        return "redirect:/boots";
+    }
 }

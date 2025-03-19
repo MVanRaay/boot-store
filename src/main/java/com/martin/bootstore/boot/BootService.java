@@ -35,4 +35,6 @@ public class BootService {
     }
 
     public void updateBoot(Boot boot) { bootRepository.save(boot); }
+
+    public void deleteBoot(Boot boot) { bootRepository.delete(boot); }
 }

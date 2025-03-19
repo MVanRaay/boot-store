@@ -30,6 +30,18 @@ public class BootController {
         return "addBoot";
     }
 
+    @GetMapping(path = "/add-test")
+    String addBootTest(@RequestParam String brandName, @RequestParam String name, @RequestParam String description, @RequestParam String size, @RequestParam String price) {
+        Boot boot = new Boot();
+        boot.setBrandName(brandName);
+        boot.setName(name);
+        boot.setDescription(description);
+        boot.setSize(Integer.parseInt(size));
+        boot.setPrice(Double.parseDouble(price));
+        bootService.addBoot(boot);
+        return "redirect:/boots";
+    }
+
     @PostMapping(path = "/add")
     String addBoot(Boot boot) {
         bootService.addBoot(boot);

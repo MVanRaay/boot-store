@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="navtabs (active, id)" th:assert="${!#strings.isEmpty(active) and !#strings.isEmpty(id)}">
+    <div class="container-fluid">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a th:class="${active == 'all' ? 'nav-link active' : 'nav-link'}" th:attr="aria-current=|${active == 'all' ? 'page' : ''}|" th:href="@{/boots}">All Boots</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active == 'add' ? 'nav-link active' : 'nav-link'}" th:attr="aria-current=|${active == 'all' ? 'page' : ''}|" th:href="@{/boots/add}">Add a new Boot</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active == 'details' ? 'nav-link active' : 'nav-link'}" th:classappend="${id == '-1' ? ' disabled' : ''}" th:attr="aria-current=|${active == 'all' ? 'page' : ''}|" th:href="@{'/boots/' + ${id}}">Details</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active == 'edit' ? 'nav-link active' : 'nav-link'}" th:classappend="${id == '-1' ? ' disabled' : ''}" th:attr="aria-current=|${active == 'all' ? 'page' : ''}|" th:href="@{'/boots/' + ${id} + '/edit'}">Edit</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active == 'delete' ? 'nav-link active' : 'nav-link'}" th:classappend="${id == '-1' ? ' disabled' : ''}" th:attr="aria-current=|${active == 'all' ? 'page' : ''}|" th:href="@{'/boots/' + ${id} + '/delete'}">Delete</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

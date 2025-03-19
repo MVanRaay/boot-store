@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class Boot {
+
     @Id
     @SequenceGenerator(
             name = "boot_sequence",
@@ -14,7 +15,7 @@ public class Boot {
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "boot_sequence"
     )
     private Long id;
     private String brandName;

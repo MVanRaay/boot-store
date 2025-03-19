@@ -23,7 +23,16 @@ public class BootService {
         return boots;
     }
 
+    public Boot getBootById(Long id) {
+        if (bootRepository.findById(id).isPresent()) {
+            return bootRepository.findById(id).get();
+        }
+        throw new IllegalStateException("No boot found");
+    }
+
     public void addBoot(Boot boot) {
         bootRepository.save(boot);
     }
+
+    public void updateBoot(Boot boot) { bootRepository.save(boot); }
 }

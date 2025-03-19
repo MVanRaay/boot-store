@@ -31,9 +31,28 @@ public class BootController {
     }
 
     @PostMapping(path = "/add")
-    public String addBoot(Boot boot) {
-        System.out.println(boot.toString());
+    String addBoot(Boot boot) {
         bootService.addBoot(boot);
         return "redirect:/boots";
+    }
+
+    @GetMapping(path = "/{id}")
+    String bootDetails(@PathVariable String id, Model model) {
+        Boot boot = bootService.getBootById(Long.parseLong(id));
+        model.addAttribute("boot", boot);
+        return "bootDetails";
+    }
+
+    @GetMapping(path = "/{id}/edit")
+    String editBoot(@PathVariable String id, Model model) {
+        Boot boot = bootService.getBootById(Long.parseLong(id));
+        model.addAttribute("boot", boot);
+        return "editBoot";
+    }
+
+    @PostMapping(path = "/{id}/edit")
+    String editBoot(@PathVariable String id, Boot boot) {
+        bootService.updateBoot(boot);
+        return "redirect:/boots/" + id;
     }
 }

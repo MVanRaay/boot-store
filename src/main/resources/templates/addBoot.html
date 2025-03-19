@@ -30,18 +30,18 @@
             <a class="nav-link active" aria-current="page" th:href="@{/boots/add}">Add a new Boot</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/boots/${id}}">Details</a>
+            <a class="nav-link disabled" th:href="@{/boots/${id}}">Details</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/boots/${id}/edit}">Edit</a>
+            <a class="nav-link disabled" th:href="@{/boots/${id}/edit}">Edit</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/boots/${id}/delete}">Delete</a>
+            <a class="nav-link disabled" th:href="@{/boots/${id}/delete}">Delete</a>
         </li>
     </ul>
 </div>
 <h1>Add a new Boot</h1>
-<form method="POST" th:action="@{/boots/add}" th:object="${boot}">
+<form th:method="post" th:action="@{/boots/add}" th:object="${boot}">
     <div class="mb-3">
         <label for="brandName">Brand Name</label>
         <input type="text" th:field="*{brandName}" class="form-control" id="brandName" name="brandName" placeholder="Brand Name" required>
@@ -61,6 +61,11 @@
     <div class="mb-3">
         <label for="price">Price</label>
         <input type="text" th:field="*{price}" class="form-control" id="price" name="price" placeholder="Price" required>
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Submit">
+        &nbsp;&nbsp;
+        <a class="btn btn-outline-danger" th:href="@{/boots}">Cancel</a>
     </div>
 </form>
 </body>

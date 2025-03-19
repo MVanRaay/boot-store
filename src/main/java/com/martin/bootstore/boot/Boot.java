@@ -90,4 +90,16 @@ public class Boot {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Boot{" +
+                "id=" + id +
+                ", brandName='" + brandName + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", size=" + size +
+                ", price=" + price +
+                '}';
+    }
 }

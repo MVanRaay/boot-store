@@ -22,4 +22,8 @@ public class BootService {
         }
         return boots;
     }
+
+    public void addBoot(Boot boot) {
+        bootRepository.save(boot);
+    }
 }

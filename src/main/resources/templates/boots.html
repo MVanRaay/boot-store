@@ -60,9 +60,9 @@
         <td th:text="${boot.size}"/>
         <td>$ <span th:text="${#numbers.formatDecimal(boot.price, 0, 'COMMA', 2, 'POINT')}"></span></td>
         <td>
-            <a th:href="@{/boots/{id}/edit}" class="btn btn-outline-info">Edit</a>
+            <a th:href="@{/boots/${boot.getId()}/edit}" class="btn btn-outline-info">Edit</a>
             &nbsp;&nbsp;
-            <a th:href="@{/boots/{id}/delete}" class="btn btn-outline-danger">Delete</a>
+            <a th:href="@{/boots/${boot.getId()}/delete}" class="btn btn-outline-danger">Delete</a>
         </td>
     </tr>
     </tbody>

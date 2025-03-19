@@ -31,7 +31,9 @@ public class BootController {
     }
 
     @PostMapping(path = "/add")
-    public void addBoot(@RequestBody Boot boot, @RequestParam BindingResult bindingResult, @RequestParam ModelMap model) {
-
+    public String addBoot(Boot boot) {
+        System.out.println(boot.toString());
+        bootService.addBoot(boot);
+        return "redirect:/boots";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>Boots</title>
@@ -9,38 +9,40 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar (active='boots')"></div>
-<div class="buffer"></div>
+<div class="y-buffer"></div>
 <div th:replace="fragments/navtabs :: navtabs (active='all', id='-1')"></div>
-<div class="buffer"></div>
-<h1>All Boots</h1>
-<div class="buffer"></div>
-<table class="table table-hover align-middle">
-    <thead>
-    <tr>
-        <th scope="col">Brand</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Size</th>
-        <th scope="col">Price</th>
-        <th scope="col">Actions</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider">
-    <tr th:each="boot: ${boots}" th:boot-id="${boot.id}" style="cursor: pointer" onclick="rowClicked(this.getAttribute('boot-id'))">
-        <td th:text="${boot.brandName}"/>
-        <td th:text="${boot.name}"/>
-        <td th:text="${boot.description}"/>
-        <td th:text="${boot.size}"/>
-        <td>$ <span th:text="${#numbers.formatDecimal(boot.price, 0, 'COMMA', 2, 'POINT')}"></span></td>
-        <td>
-            <a th:href="@{'/boots/' + ${boot.id} + '/edit'}" class="btn btn-outline-info">Edit</a>
-            &nbsp;&nbsp;
-            <a th:href="@{'/boots/' + ${boot.id} + '/delete'}" class="btn btn-outline-danger">Delete</a>
-        </td>
-    </tr>
+<div class="container my-5">
+    <h1>All Boots</h1>
+    <div class="y-buffer"></div>
+    <table class="table table-hover align-middle">
+        <thead>
+        <tr>
+            <th scope="col">Brand</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Size</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr th:each="boot: ${boots}" th:boot-id="${boot.id}" style="cursor: pointer" onclick="rowClicked(this.getAttribute('boot-id'))">
+            <td th:text="${boot.brandName}"/>
+            <td th:text="${boot.name}"/>
+            <td th:text="${boot.description}"/>
+            <td th:text="${boot.size}"/>
+            <td>$ <span th:text="${#numbers.formatDecimal(boot.price, 0, 'COMMA', 2, 'POINT')}"></span></td>
+            <td>
+                <a th:href="@{'/boots/' + ${boot.id} + '/edit'}" class="btn btn-outline-info">Edit</a>
+                &nbsp;&nbsp;
+                <a th:href="@{'/boots/' + ${boot.id} + '/delete'}" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
 <script>
     function rowClicked(id) {
         location.href = "/boots/" + id;

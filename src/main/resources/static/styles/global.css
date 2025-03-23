@@ -1,3 +1,6 @@
-.buffer{
+.y-buffer{
     height: 1rem;
+}
+.x-buffer{
+    width: 1rem;
 }

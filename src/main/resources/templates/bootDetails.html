@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>Boot Details</title>
@@ -8,20 +8,21 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar (active='boots')"></div>
-<div class="buffer"></div>
+<div class="y-buffer"></div>
 <div th:replace="fragments/navtabs :: navtabs (active='details', id=${boot.id})"></div>
-<div class="buffer"></div>
-<h1>Boot Details</h1>
-<div class="buffer"></div>
-<h4>Brand</h4>
-<p th:text="${boot.brandName}"></p>
-<h4>Name</h4>
-<p th:text="${boot.name}"></p>
-<h4>Description</h4>
-<p th:text="${boot.description}"></p>
-<h4>Size</h4>
-<p th:text="${boot.size}"></p>
-<h4>Price</h4>
-<p th:text="${boot.price}"></p>
+<div class="container my-5">
+    <h1>Boot Details</h1>
+    <div class="y-buffer"></div>
+    <h4>Brand</h4>
+    <p th:text="${boot.brandName}"></p>
+    <h4>Name</h4>
+    <p th:text="${boot.name}"></p>
+    <h4>Description</h4>
+    <p th:text="${boot.description}"></p>
+    <h4>Size</h4>
+    <p th:text="${boot.size}"></p>
+    <h4>Price</h4>
+    <p th:text="${boot.price}"></p>
+</div>
 </body>
 </html>

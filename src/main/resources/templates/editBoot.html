@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>Edit Boot</title>
@@ -8,37 +8,13 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar (active='boots')"></div>
-<div class="buffer"></div>
+<div class="y-buffer"></div>
 <div th:replace="fragments/navtabs :: navtabs (active='edit', id=${boot.id})"></div>
-<div class="buffer"></div>
-<h1>Add a new Boot</h1>
-<div class="buffer"></div>
-<form th:method="post" th:action="@{'/boots/' + ${boot.id} + '/edit'}" th:object="${boot}">
-    <div class="mb-3">
-        <label for="brandName">Brand Name</label>
-        <input type="text" th:field="*{brandName}" class="form-control" id="brandName" name="brandName" placeholder="Brand Name" required>
-    </div>
-    <div class="mb-3">
-        <label for="name">Name</label>
-        <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Name" required>
-    </div>
-    <div class="mb-3">
-        <label for="description">Description</label>
-        <input type="text" th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description" required>
-    </div>
-    <div class="mb-3">
-        <label for="size">Size</label>
-        <input type="text" th:field="*{size}" class="form-control" id="size" name="size" placeholder="Size" required>
-    </div>
-    <div class="mb-3">
-        <label for="price">Price</label>
-        <input type="text" th:field="*{price}" class="form-control" id="price" name="price" placeholder="Price" required>
-    </div>
-    <div class="mb-3">
-        <input type="submit" class="btn btn-primary" value="Submit">
-        &nbsp;&nbsp;
-        <a class="btn btn-outline-danger" th:href="@{/boots}">Cancel</a>
-    </div>
-</form>
+<div class="y-buffer"></div>
+<div class="container my-5">
+    <h1>Add a new Boot</h1>
+    <div class="y-buffer"></div>
+    <div th:replace="fragments/bootForm :: bootForm (boot=${boot}, status='edit')"></div>
+</div>
 </body>
 </html>

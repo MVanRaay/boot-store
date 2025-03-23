@@ -13,7 +13,7 @@ public class BootConfig {
     CommandLineRunner commandLineRunner(BootRepository bootRepository) {
         if (bootRepository.findAll().isEmpty()) {
             return args -> {
-                Boot boot1 = new Boot(
+                Boot boot1 =    new Boot(
                         "Sorel",
                         "Trekker",
                         "A boot for any weather",

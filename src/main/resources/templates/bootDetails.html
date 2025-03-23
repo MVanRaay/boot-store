@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/styles/global.css">
 </head>
 <body>
-<div th:replace="fragments/navbar :: navbar (active='boots')"></div>
+<div th:replace="~{fragments/navbar :: navbar (active='boots')}"></div>
 <div class="y-buffer"></div>
-<div th:replace="fragments/navtabs :: navtabs (active='details', id=${boot.id})"></div>
-<div class="container my-5">
+<div th:replace="~{fragments/navtabs :: navtabs (active='details', id=${boot.id})}"></div>
+<div class="container my-3">
     <h1>Boot Details</h1>
     <div class="y-buffer"></div>
     <h4>Brand</h4>

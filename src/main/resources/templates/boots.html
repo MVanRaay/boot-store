@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/styles/global.css">
 </head>
 <body>
-<div th:replace="fragments/navbar :: navbar (active='boots')"></div>
+<div th:replace="~{fragments/navbar :: navbar (active='boots')}"></div>
 <div class="y-buffer"></div>
-<div th:replace="fragments/navtabs :: navtabs (active='all', id='-1')"></div>
-<div class="container my-5">
+<div th:replace="~{fragments/navtabs :: navtabs (active='all', id='-1')}"></div>
+<div class="container my-3">
     <h1>All Boots</h1>
     <div class="y-buffer"></div>
     <table class="table table-hover align-middle">

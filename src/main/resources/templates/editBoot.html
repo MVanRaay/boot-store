@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="/styles/global.css">
 </head>
 <body>
-<div th:replace="fragments/navbar :: navbar (active='boots')"></div>
+<div th:replace="~{fragments/navbar :: navbar (active='boots')}"></div>
 <div class="y-buffer"></div>
-<div th:replace="fragments/navtabs :: navtabs (active='edit', id=${boot.id})"></div>
-<div class="y-buffer"></div>
-<div class="container my-5">
-    <h1>Add a new Boot</h1>
+<div th:replace="~{fragments/navtabs :: navtabs (active='edit', id=${boot.id})}"></div>
+<div class="container my-3">
+    <h1>Update Boot</h1>
     <div class="y-buffer"></div>
-    <div th:replace="fragments/bootForm :: bootForm (boot=${boot}, status='edit')"></div>
+    <div th:replace="~{fragments/bootForm :: bootForm (boot=${boot}, status='edit')}"></div>
 </div>
 </body>
 </html>

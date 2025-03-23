@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/styles/global.css">
 </head>
 <body>
-<div th:replace="fragments/navbar :: navbar (active='home')"></div>
+<div th:replace="~{fragments/navbar :: navbar (active='home')}"></div>
 <div class="y-buffer"></div>
-<div class="container my-5">
+<div class="container my-3">
     <h1 class="text-center"> Welcome to my Boot Store!</h1>
     <p class="text-center">This is a small experiment working with Spring Boot and Thymeleaf, using bootstrap to help me get things moving quicker.</p>
 </div>

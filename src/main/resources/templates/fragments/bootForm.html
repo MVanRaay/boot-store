@@ -1,29 +1,32 @@
 <div th:fragment="bootForm (boot, status)">
-    <form th:method="post" th:action="@{'/boots/' + ${status == 'edit' ? boot.id + '/edit' : 'add'}}" th:object="${boot}">
+    <form th:method="post" th:action="@{'/boots/' + ${status == 'edit' ? boot.id + '/edit' : 'add'}}"
+          th:object="${boot}">
         <div class="mb-3">
             <label for="brandName">Brand Name</label>
+            <div th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}" class="text-danger"></div>
             <input type="text" th:field="*{brandName}" class="form-control" id="brandName" name="brandName"
-                   placeholder="Brand Name" required>
+                   placeholder="Brand Name">
         </div>
         <div class="mb-3">
             <label for="name">Name</label>
-            <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Name"
-                   required>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">name Error</div>
+            <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Name">
         </div>
         <div class="mb-3">
             <label for="description">Description</label>
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">description Error</div>
             <input type="text" th:field="*{description}" class="form-control" id="description" name="description"
-                   placeholder="Description" required>
+                   placeholder="Description">
         </div>
         <div class="mb-3">
             <label for="size">Size</label>
-            <input type="text" th:field="*{size}" class="form-control" id="size" name="size" placeholder="Size"
-                   required>
+            <div th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="text-danger">size Error</div>
+            <input type="text" th:field="*{size}" class="form-control" id="size" name="size" placeholder="Size">
         </div>
         <div class="mb-3">
             <label for="price">Price</label>
-            <input type="text" th:field="*{price}" class="form-control" id="price" name="price" placeholder="Price"
-                   required>
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">price Error</div>
+            <input type="text" th:field="*{price}" class="form-control" id="price" name="price" placeholder="Price">
         </div>
         <div class="mb-3">
             <input type="submit" class="btn btn-primary" th:value="${status == 'edit' ? 'Save Changes' : 'Add Boot'}">

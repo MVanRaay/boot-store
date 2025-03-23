@@ -1,5 +1,6 @@
 package com.martin.bootstore.boot;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,20 +33,12 @@ public class BootController {
         return "addBoot";
     }
 
-    @GetMapping(path = "/add-test")
-    String addBootTest(@RequestParam String brandName, @RequestParam String name, @RequestParam String description, @RequestParam String size, @RequestParam String price) {
-        Boot boot = new Boot();
-        boot.setBrandName(brandName);
-        boot.setName(name);
-        boot.setDescription(description);
-        boot.setSize(Integer.parseInt(size));
-        boot.setPrice(Double.parseDouble(price));
-        bootService.addBoot(boot);
-        return "redirect:/boots";
-    }
-
     @PostMapping(path = "/add")
-    String addBoot(Boot boot) {
+    String addBoot(@Valid Boot boot, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addBoot";
+        }
+
         bootService.addBoot(boot);
         return "redirect:/boots";
     }
@@ -65,7 +58,11 @@ public class BootController {
     }
 
     @PostMapping(path = "/{id}/edit")
-    String editBoot(@PathVariable String id, Boot boot) {
+    String editBoot(@PathVariable String id, @Valid Boot boot, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "editBoot";
+        }
+
         bootService.updateBoot(boot);
         return "redirect:/boots/" + id;
     }

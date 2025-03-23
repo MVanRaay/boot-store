@@ -1,7 +1,7 @@
 package com.martin.bootstore.boot;
 
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Entity
@@ -30,9 +30,26 @@ public class Boot {
             generator = "boot_sequence"
     )
     private Long id;
+
+    @NotBlank(message = "Brand Name is required.")
+    @Size(min = 2, max = 20, message = "Brand Name must be between 2 and 20 characters long.")
     private String brandName;
+
+    @NotBlank(message = "Boot Name is required.")
+    @Size(min = 2, max = 20, message = "Boot Name must be between 2 and 20 characters long.")
     private String name;
+
+    @NotBlank(message = "Description is required.")
+    @Size(min = 2, max = 2000, message = "Description must be between 2 and 2000 characters long.")
     private String description;
+
+    @NotNull(message = "Boot size is required.")
+    @Min(value = 1, message = "Boot size must be greater than 1.")
+    @Max(value = 20, message = "Boot size must be less than 20.")
     private int size;
+
+    @NotNull(message = "Boot price is required.")
+    @Min(value = 0, message = "Boot price must be greater than $0.")
+    @Max(value = 100000, message = "Boot price must be less than $100, 000.")
     private double price;
 }

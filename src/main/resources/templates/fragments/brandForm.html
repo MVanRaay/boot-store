@@ -1,0 +1,25 @@
+<div th:fragment="brandForm (brand, status)">
+    <form th:method="post" th:action="@{'/brands/' + ${status == 'edit' ? brand.brandId + '/edit' : 'add'}}"
+          th:object="${brand}">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">name Error</div>
+            <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Name">
+        </div>
+        <div class="mb-3">
+            <label for="description">Description</label>
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+            <input type="text" th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description">
+        </div>
+        <div class="mb-3">
+            <label for="yearFounded">Year Founded</label>
+            <div th:if="${#fields.hasErrors('yearFounded')}" th:errors="*{yearFounded}" class="text-danger"></div>
+            <input type="text" th:field="*{yearFounded}" class="form-control" id="yearFounded" name="yearFounded" placeholder="Year Founded">
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary" th:value="${status == 'edit' ? 'Save Changes' : 'Add Brand'}">
+            &nbsp;&nbsp;
+            <a class="btn btn-outline-danger" th:href="@{/brands}">Cancel</a>
+        </div>
+    </form>
+</div>

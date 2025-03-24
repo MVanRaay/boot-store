@@ -1,5 +1,6 @@
 package com.martin.bootstore.boot;
 
+import com.martin.bootstore.brand.Brand;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -11,9 +12,9 @@ public class Boot {
 
     public Boot(){}
 
-    public Boot(String brandName, String name, String description, int size, double price) {
-        this.brandName = brandName;
+    public Boot(String name, Brand brand, String description, int size, double price) {
         this.name = name;
+        this.brand = brand;
         this.description = description;
         this.size = size;
         this.price = price;
@@ -29,15 +30,15 @@ public class Boot {
             strategy = GenerationType.SEQUENCE,
             generator = "boot_sequence"
     )
-    private Long id;
-
-    @NotBlank(message = "Brand Name is required.")
-    @Size(min = 2, max = 20, message = "Brand Name must be between 2 and 20 characters long.")
-    private String brandName;
+    private Long bootId;
 
     @NotBlank(message = "Boot Name is required.")
     @Size(min = 2, max = 20, message = "Boot Name must be between 2 and 20 characters long.")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = false)
+    private Brand brand;
 
     @NotBlank(message = "Description is required.")
     @Size(min = 2, max = 2000, message = "Description must be between 2 and 2000 characters long.")

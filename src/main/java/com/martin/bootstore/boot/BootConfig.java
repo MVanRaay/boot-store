@@ -1,5 +1,7 @@
 package com.martin.bootstore.boot;
 
+import com.martin.bootstore.brand.Brand;
+import com.martin.bootstore.brand.BrandRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,30 +11,42 @@ import java.util.List;
 @Configuration
 public class BootConfig {
 
+    // Because you need to have the brand repository initialized to create boot that are associated to a brand,
+    // you must run the application twice the first time you start it to fully initialize the database and seed it
+    // with data.
     @Bean
-    CommandLineRunner commandLineRunner(BootRepository bootRepository) {
-        if (bootRepository.findAll().isEmpty()) {
+    CommandLineRunner bootCommandLineRunner(BootRepository bootRepository, BrandRepository brandRepository) {
+        if (bootRepository.findAll().isEmpty() && !brandRepository.findAll().isEmpty()) {
             return args -> {
-                Boot boot1 =    new Boot(
-                        "Sorel",
+                Boot boot1 = new Boot(
                         "Trekker",
-                        "A boot for any weather",
+                        brandRepository.findById(1L).isPresent() ? brandRepository.findById(1L).get() : null,
+                        "A boot for any weather.",
                         10,
                         24.99
                 );
 
                 Boot boot2 = new Boot(
-                        "Eddie Bauer",
                         "Montana",
-                        "They'll always keep you warm",
+                        brandRepository.findById(2L).isPresent() ? brandRepository.findById(2L).get() : null,
+                        "They'll always keep you warm.",
                         12,
                         54.99
                 );
 
-                bootRepository.saveAll(List.of(boot1, boot2));
+                Boot boot3 = new Boot(
+                        "Rubbers",
+                        brandRepository.findById(3L).isPresent() ? brandRepository.findById(3L).get() : null,
+                        "Your feet will not get wet with these boots.",
+                        13,
+                        49.99
+                );
+
+                bootRepository.saveAll(List.of(boot1, boot2, boot3));
             };
         }
 
-        return args -> {};
+        return args -> {
+        };
     }
 }

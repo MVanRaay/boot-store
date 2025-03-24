@@ -10,7 +10,7 @@
 <body>
 <div th:replace="~{fragments/navbar :: navbar (active='boots')}"></div>
 <div class="y-buffer"></div>
-<div th:replace="~{fragments/navtabs :: navtabs (active='all', id='-1')}"></div>
+<div th:replace="~{fragments/navtabs :: bootNavtab (active='all', id='-1')}"></div>
 <div class="container my-3">
     <h1>All Boots</h1>
     <div class="y-buffer"></div>
@@ -26,19 +26,19 @@
         </tr>
         </thead>
         <tbody class="table-group-divider">
-        <tr th:each="boot: ${boots}" th:boot-id="${boot.id}" style="cursor: pointer" onclick="rowClicked(this.getAttribute('boot-id'))">
-            <td th:text="${boot.brandName}"/>
+        <tr th:each="boot: ${boots}" th:boot-id="${boot.bootId}" style="cursor: pointer"
+            onclick="rowClicked(this.getAttribute('boot-id'))">
+            <td th:text="${boot.brand.name}"/>
             <td th:text="${boot.name}"/>
             <td th:text="${boot.description}"/>
             <td th:text="${boot.size}"/>
             <td>$ <span th:text="${#numbers.formatDecimal(boot.price, 0, 'COMMA', 2, 'POINT')}"></span></td>
             <td>
-                <a th:href="@{'/boots/' + ${boot.id} + '/edit'}" class="btn btn-outline-info">Edit</a>
+                <a th:href="@{'/boots/' + ${boot.bootId} + '/edit'}" class="btn btn-outline-info">Edit</a>
                 &nbsp;&nbsp;
-                <a th:href="@{'/boots/' + ${boot.id} + '/delete'}" class="btn btn-outline-danger">Delete</a>
+                <a th:href="@{'/boots/' + ${boot.bootId} + '/delete'}" class="btn btn-outline-danger">Delete</a>
             </td>
         </tr>
-
         </tbody>
     </table>
 </div>

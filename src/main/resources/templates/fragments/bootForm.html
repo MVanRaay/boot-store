@@ -1,31 +1,33 @@
-<div th:fragment="bootForm (boot, status)">
-    <form th:method="post" th:action="@{'/boots/' + ${status == 'edit' ? boot.id + '/edit' : 'add'}}"
+<div th:fragment="bootForm (boot, brands, status)">
+    <form th:method="post" th:action="@{'/boots/' + ${status == 'edit' ? boot.bootId + '/edit' : 'add'}}"
           th:object="${boot}">
         <div class="mb-3">
-            <label for="brandName">Brand Name</label>
-            <div th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}" class="text-danger"></div>
-            <input type="text" th:field="*{brandName}" class="form-control" id="brandName" name="brandName"
-                   placeholder="Brand Name">
-        </div>
-        <div class="mb-3">
             <label for="name">Name</label>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">name Error</div>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
             <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Name">
         </div>
         <div class="mb-3">
+            <label for="brand">Brand</label>
+<!--            <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="text-danger"></div>-->
+            <select id="brand" class="form-select" name="brand">
+                <option selected disabled value="-1">Select an existing Brand</option>
+                <option th:each="brand: ${brands}" th:value="${brand.brandId}" th:text="${brand.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="description">Description</label>
-            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">description Error</div>
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
             <input type="text" th:field="*{description}" class="form-control" id="description" name="description"
                    placeholder="Description">
         </div>
         <div class="mb-3">
             <label for="size">Size</label>
-            <div th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="text-danger">size Error</div>
+            <div th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="text-danger"></div>
             <input type="text" th:field="*{size}" class="form-control" id="size" name="size" placeholder="Size">
         </div>
         <div class="mb-3">
             <label for="price">Price</label>
-            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">price Error</div>
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
             <input type="text" th:field="*{price}" class="form-control" id="price" name="price" placeholder="Price">
         </div>
         <div class="mb-3">

@@ -17,6 +17,6 @@ public class StoreController {
     @GetMapping
     public String store(ModelMap model) {
         model.addAttribute("boots", bootService.getAllBoots());
-        return "store";
+        return "store/store";
     }
 }

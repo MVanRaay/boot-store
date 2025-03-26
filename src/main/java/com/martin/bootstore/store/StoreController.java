@@ -19,4 +19,10 @@ public class StoreController {
         model.addAttribute("boots", bootService.getAllBoots());
         return "store/store";
     }
+
+    @GetMapping(path = "/cart")
+    public String cart(ModelMap model) {
+        model.addAttribute("boots", bootService.getAllBoots());
+        return "store/cart";
+    }
 }

@@ -25,4 +25,10 @@ public class StoreController {
         model.addAttribute("boots", bootService.getAllBoots());
         return "store/cart";
     }
+
+    @GetMapping(path = "/boots/{id}/details")
+    public String details(@PathVariable int id, ModelMap model) {
+        model.addAttribute("boots", bootService.getAllBoots());
+        return "details";
+    }
 }

@@ -20,7 +20,9 @@
             <th scope="col">Brand</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Size</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Type</th>
+            <th scope="col">Size Range</th>
             <th scope="col">Price</th>
             <th scope="col">Actions</th>
         </tr>
@@ -31,7 +33,9 @@
             <td th:text="${boot.brand.name}"/>
             <td th:text="${boot.name}"/>
             <td th:text="${boot.description}"/>
-            <td th:text="${boot.size}"/>
+            <td th:text="${boot.gender}"/>
+            <td th:text="${boot.type}"/>
+            <td th:text="${boot.minSize + ' - ' + boot.maxSize}"/>
             <td>$ <span th:text="${#numbers.formatDecimal(boot.price, 0, 'COMMA', 2, 'POINT')}"></span></td>
             <td>
                 <a th:href="@{'/boots/' + ${boot.bootId} + '/edit'}" class="btn btn-outline-info">Edit</a>

@@ -34,7 +34,30 @@ public class BootService {
         bootRepository.save(boot);
     }
 
-    public void updateBoot(Boot boot) { bootRepository.save(boot); }
+    public void updateBoot(Boot boot) {
+        System.out.println("Boot: " + boot.toString());
+        System.out.println("Boot from repository: " + bootRepository.findById(boot.getBootId()).get());
 
-    public void deleteBoot(Boot boot) { bootRepository.delete(boot); }
+        bootRepository.save(boot);
+
+//        if (boot != bootRepository.findById(boot.getBootId()).get()) {
+//            throw new IllegalStateException("Boot was not updated");
+//        }
+    }
+
+    public void deleteBoot(Boot boot) {
+        if (!bootRepository.existsById(boot.getBootId())) {
+            throw new IllegalStateException("Boot does not exist");
+        }
+
+        bootRepository.delete(boot);
+
+        if (bootRepository.existsById(boot.getBootId())) {
+            throw new IllegalStateException("Boot was not deleted");
+        }
+    }
+
+    public Boolean bootExists(Long id) {
+        return bootRepository.existsById(id);
+    }
 }

@@ -1,6 +1,7 @@
 <div th:fragment="bootForm (boot, brands, status)">
     <form th:method="post" th:action="@{'/boots/' + ${status == 'edit' ? boot.bootId + '/edit' : 'add'}}"
           th:object="${boot}">
+        <input type="hidden" th:field="*{bootId}" />
         <div class="mb-3">
             <label for="name">Name</label>
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
@@ -8,10 +9,10 @@
         </div>
         <div class="mb-3">
             <label for="brand">Brand</label>
-<!--            <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="text-danger"></div>-->
+            <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="text-danger"></div>
             <select id="brand" class="form-select" name="brand">
-                <option selected disabled value="-1">Select an existing Brand</option>
-                <option th:each="brand: ${brands}" th:value="${brand.brandId}" th:text="${brand.name}"></option>
+                <option th:if="${status == 'new'}" th:selected="true" selected disabled value="-1">Select an existing Brand</option>
+                <option th:each="brand: ${brands}" th:selected="${boot.brand == brand}" th:value="${brand.brandId}" th:text="${brand.name}"></option>
             </select>
         </div>
         <div class="mb-3">
@@ -21,9 +22,32 @@
                    placeholder="Description">
         </div>
         <div class="mb-3">
-            <label for="size">Size</label>
-            <div th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="text-danger"></div>
-            <input type="text" th:field="*{size}" class="form-control" id="size" name="size" placeholder="Size">
+            <label for="gender">Gender</label>
+            <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="text-danger"></div>
+            <select id="gender" class="form-select" name="gender">
+                <option th:if="${status == 'new'}" th:selected="true" selected disabled value="-1">Select a Gender</option>
+                <option th:each="gender: ${genders}" th:selected="${boot.gender == gender}" th:value="${gender}" th:text="${gender.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="type">Type</label>
+            <div th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger"></div>
+            <select id="type" class="form-select" name="type">
+                <option th:if="${status == 'new'}" th:selected="true" selected disabled value="-1">Select a Type</option>
+                <option th:each="type: ${types}" th:selected="${boot.type == type}" th:value="${type}" th:text="${type.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="minSize">Minimum Size</label>
+            <div th:if="${#fields.hasErrors('minSize')}" th:errors="*{minSize}" class="text-danger"></div>
+            <input type="text" th:field="*{minSize}" class="form-control" id="minSize" name="minSize"
+                   placeholder="Minimum Size">
+        </div>
+        <div class="mb-3">
+            <label for="maxSize">Maximum Size</label>
+            <div th:if="${#fields.hasErrors('maxSize')}" th:errors="*{maxSize}" class="text-danger"></div>
+            <input type="text" th:field="*{maxSize}" class="form-control" id="maxSize" name="maxSize"
+                   placeholder="Maximum Size">
         </div>
         <div class="mb-3">
             <label for="price">Price</label>

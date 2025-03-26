@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class BootConfig {
 
-    // Because you need to have the brand repository initialized to create boot that are associated to a brand,
+    // Because you need to have the brand repository initialized to create boots that are associated to a brand,
     // you must run the application twice the first time you start it to fully initialize the database and seed it
     // with data.
     @Bean
@@ -22,7 +22,10 @@ public class BootConfig {
                         "Trekker",
                         brandRepository.findById(1L).isPresent() ? brandRepository.findById(1L).get() : null,
                         "A boot for any weather.",
-                        10,
+                        BootGender.Unisex,
+                        BootType.Winter,
+                        5,
+                        15,
                         24.99
                 );
 
@@ -30,7 +33,10 @@ public class BootConfig {
                         "Montana",
                         brandRepository.findById(2L).isPresent() ? brandRepository.findById(2L).get() : null,
                         "They'll always keep you warm.",
-                        12,
+                        BootGender.Men,
+                        BootType.Hiking,
+                        6,
+                        14,
                         54.99
                 );
 
@@ -38,7 +44,10 @@ public class BootConfig {
                         "Rubbers",
                         brandRepository.findById(3L).isPresent() ? brandRepository.findById(3L).get() : null,
                         "Your feet will not get wet with these boots.",
-                        13,
+                        BootGender.Unisex,
+                        BootType.Rain,
+                        4,
+                        16,
                         49.99
                 );
 

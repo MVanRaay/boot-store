@@ -52,5 +52,5 @@ public class Brand {
     private int yearFounded;
 
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Boot> boots = new ArrayList<>();
+    private transient List<Boot> boots = new ArrayList<>();
 }

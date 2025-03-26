@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/boots")
 public class BootController {
@@ -31,12 +33,17 @@ public class BootController {
         boot.setBootId(-1L);
         model.addAttribute("boot", boot);
         model.addAttribute("brands", brandService.getAllBrands());
+        model.addAttribute("genders", List.of(BootGender.values()));
+        model.addAttribute("types", List.of(BootType.values()));
         return "boots/addBoot";
     }
 
     @PostMapping(path = "/add")
-    String addBoot(@Valid Boot boot, BindingResult bindingResult) {
+    String addBoot(@Valid Boot boot, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("brands", brandService.getAllBrands());
+            model.addAttribute("genders", List.of(BootGender.values()));
+            model.addAttribute("types", List.of(BootType.values()));
             return "boots/addBoot";
         }
 
@@ -56,12 +63,17 @@ public class BootController {
         Boot boot = bootService.getBootById(Long.parseLong(id));
         model.addAttribute("boot", boot);
         model.addAttribute("brands", brandService.getAllBrands());
+        model.addAttribute("genders", List.of(BootGender.values()));
+        model.addAttribute("types", List.of(BootType.values()));
         return "boots/editBoot";
     }
 
     @PostMapping(path = "/{id}/edit")
-    String editBoot(@PathVariable String id, @Valid Boot boot, BindingResult bindingResult) {
+    String editBoot(@PathVariable String id, @Valid Boot boot, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("brands", brandService.getAllBrands());
+            model.addAttribute("genders", List.of(BootGender.values()));
+            model.addAttribute("types", List.of(BootType.values()));
             return "boots/editBoot";
         }
 

@@ -12,11 +12,14 @@ public class Boot {
 
     public Boot(){}
 
-    public Boot(String name, Brand brand, String description, int size, double price) {
+    public Boot(String name, Brand brand, String description, BootGender gender, BootType type, int minSize, int maxSize, double price) {
         this.name = name;
         this.brand = brand;
         this.description = description;
-        this.size = size;
+        this.gender = gender;
+        this.type = type;
+        this.minSize = minSize;
+        this.maxSize = maxSize;
         this.price = price;
     }
 
@@ -38,16 +41,30 @@ public class Boot {
 
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)
+    @NotNull(message = "Brand is required.")
     private Brand brand;
 
     @NotBlank(message = "Description is required.")
     @Size(min = 2, max = 2000, message = "Description must be between 2 and 2000 characters long.")
     private String description;
 
-    @NotNull(message = "Boot size is required.")
-    @Min(value = 1, message = "Boot size must be greater than 1.")
-    @Max(value = 20, message = "Boot size must be less than 20.")
-    private int size;
+    @Enumerated(EnumType.ORDINAL)
+    @NotNull(message = "Gender is required.")
+    private BootGender gender;
+
+    @Enumerated(EnumType.ORDINAL)
+    @NotNull(message = "Type is required.")
+    private BootType type;
+
+    @NotNull(message = "Boot min size is required.")
+    @Min(value = 1, message = "Boot min size must be greater than 1.")
+    @Max(value = 20, message = "Boot min size must be less than 20.")
+    private int minSize;
+
+    @NotNull(message = "Boot max size is required.")
+    @Min(value = 1, message = "Boot max size must be greater than 1.")
+    @Max(value = 20, message = "Boot max size must be less than 20.")
+    private int maxSize;
 
     @NotNull(message = "Boot price is required.")
     @Min(value = 0, message = "Boot price must be greater than $0.")
